@@ -18,6 +18,6 @@ DEPLOYMENT_BUCKET_NAME=$(aws cloudformation describe-stacks --region eu-west-1 -
 DEPLOYMENT_S3_PATH="s3://${DEPLOYMENT_BUCKET_NAME}/${BRANCH_NAME}/${FUNCTION_NAME}.zip"
 
 
-echo "Will deploy ${FUNCTION_NAME}.zip to  ${DEPLOYMENT_S3_PATH}"
+echo "Will deploy .build/${FUNCTION_NAME}.zip to  ${DEPLOYMENT_S3_PATH}"
 
-aws s3 cp ${FUNCTION_NAME}.zip ${DEPLOYMENT_S3_PATH}
+aws s3 cp .build/${FUNCTION_NAME}.zip ${DEPLOYMENT_S3_PATH}
