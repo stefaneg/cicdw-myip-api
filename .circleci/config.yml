@@ -31,16 +31,12 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASSWD
 
           export DOCKER_REPO_NAME=gulli/cicdw-myip-api
-          export PUSHARG=
-          pwd
-          ls -lart
+          export PUSHARG=push
           (./build-docker.sh ${PUSHARG})
 
     - deploy:
-        name: conditionally run a deploy job
+        name: Trigger deployment
         command: |
-          # replace this with your build/deploy check (i.e. current branch is "release")
-          env
           if [[ true ]]; then
             curl --user ${CIRCLE_API_USER_TOKEN}: \
               --data build_parameters[CIRCLE_JOB]=deploy \
