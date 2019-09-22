@@ -37,6 +37,8 @@ jobs:
     - deploy:
         name: Trigger deployment
         command: |
+          set -e
+
           if [[ true ]]; then
             curl --user ${CIRCLE_API_USER_TOKEN}: \
               --data build_parameters[CIRCLE_JOB]=deploy \
