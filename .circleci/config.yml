@@ -30,8 +30,10 @@ jobs:
         command: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWD
 
-          export PUSHARG=push
-          (build-docker.sh ${PUSHARG})
+          export PUSHARG=
+          pwd
+          ls -lart
+          (./build-docker.sh ${PUSHARG})
     - save_cache:
         key: v1-{{ .Branch }}-{{ epoch }}
         paths:
