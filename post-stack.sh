@@ -17,7 +17,7 @@ DEPLOYMENT_S3_PATH="s3://${DEPLOYMENT_BUCKET_NAME}/${BRANCH_NAME}/${FUNCTION_NAM
 
 set -e
 
-aws lambda update-function-code --function-name ${BRANCH_NAME}-${FUNCTION_NAME} --s3-bucket ${DEPLOYMENT_BUCKET_NAME} --s3-key ${BRANCH_NAME}/${FUNCTION_NAME}.zip --publish > /dev/null
+aws lambda update-function-code --region eu-west-1 --function-name ${BRANCH_NAME}-${FUNCTION_NAME} --s3-bucket ${DEPLOYMENT_BUCKET_NAME} --s3-key ${BRANCH_NAME}/${FUNCTION_NAME}.zip --publish > /dev/null
 
 export API_INVOKE_ENDPOINT=$(./get-api-uri.sh ${WEB_API_STACK_NAME})
 
