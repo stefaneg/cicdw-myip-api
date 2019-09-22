@@ -39,8 +39,9 @@ jobs:
         command: |
           set -e
 
+          export CICD_TRIGGERING_VERSION=$(cat ./cicdversion.txt)
+
           if [[ true ]]; then
-            export CICD_TRIGGERING_VERSION=(cat ./cicdversion.txt)
             curl --user ${CIRCLE_API_USER_TOKEN}: \
               --data build_parameters[CIRCLE_JOB]=deploy \
               --data build_parameters[CICD_TRIGGERING_REPONAME]=$CIRCLE_PROJECT_REPONAME \
