@@ -43,6 +43,7 @@ jobs:
           env
           if [[ true ]]; then
             curl --user ${CIRCLE_API_USER_TOKEN}: \
+              --data build_parameters[CIRCLE_JOB]=deploy \
               https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/cicdw-myip-deploy-mgmt/tree/$CIRCLE_BRANCH
           fi
 
