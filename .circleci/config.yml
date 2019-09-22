@@ -18,7 +18,7 @@ jobs:
         name: Install bash and curl
         command: |
           set +o pipefail
-          apk --no-cache update && apk --no-cache add bash curl
+          apk --no-cache update  && apk --no-cache add bash curl && apk upgrade libcurl
     - run:
         name: Load Docker image layer cache
         command: |
