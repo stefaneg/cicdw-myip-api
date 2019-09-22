@@ -34,6 +34,7 @@ if [ -z "$BRANCH_NAME" ]; then
 fi
 
 
+
 docker build \
 	-t ${DOCKER_IMAGE} \
 	-t ${REPO_NAME}:latest \
