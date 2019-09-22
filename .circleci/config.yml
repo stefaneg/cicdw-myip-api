@@ -30,6 +30,7 @@ jobs:
         command: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWD
 
+          export DOCKER_REPO_NAME=gulli/cicdw-myip-api
           export PUSHARG=
           pwd
           ls -lart

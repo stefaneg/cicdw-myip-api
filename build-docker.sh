@@ -3,6 +3,11 @@ set -e
 
 PUSH=$1
 
+if [ -z "${DOCKER_REPO_NAME}" ]; then
+	export DOCKER_REPO_NAME=gulli/cicdw-myip-api
+fi
+
+
 # This is the official version label for this project.
 MAJOR_MINOR=0.2
 
@@ -15,7 +20,7 @@ fi
 export SEMANTIC_VERSION=${MAJOR_MINOR}-${BUILD_NUMBER}
 
 if [ -z "${DOCKER_IMAGE}" ]; then
-	export DOCKER_IMAGE=${REPO_NAME}:${SEMANTIC_VERSION}
+	export DOCKER_IMAGE=${DOCKER_REPO_NAME}:${SEMANTIC_VERSION}
 fi
 
 rm -rf ./.build
@@ -34,20 +39,19 @@ if [ -z "$BRANCH_NAME" ]; then
 fi
 
 
-
 docker build \
 	-t ${DOCKER_IMAGE} \
-	-t ${REPO_NAME}:latest \
-	--cache-from ${REPO_NAME}:latest \
+	-t ${DOCKER_REPO_NAME}:latest \
+	--cache-from ${DOCKER_REPO_NAME}:latest \
 	-f Dockerfile .
 
 
 if [ -d "/caches/" ]; then
-	docker save -o /caches/layercache.tar ${REPO_NAME}:latest
+	docker save -o /caches/layercache.tar ${DOCKER_REPO_NAME}:latest
 fi
 
 echo ${DOCKER_IMAGE}
 
 if [ "${PUSH}" = "push" ]; then
-	docker push ${REPO_NAME}
+	docker push ${DOCKER_REPO_NAME}
 fi
