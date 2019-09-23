@@ -4,7 +4,7 @@ set -e
 PUSH=$1
 
 if [ -z "${DOCKER_REPO_NAME}" ]; then
-	export DOCKER_REPO_NAME=gulli/cicdw-myip-api
+	export DOCKER_REPO_NAME=$DOCKER_USER/cicdw-myip-api
 fi
 
 
